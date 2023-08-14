@@ -1,0 +1,136 @@
+import { Callout } from 'nextra/components';
+
+# Audios
+
+### `getAssets(assetConfig: AssetConfig)`
+
+```ts copy
+interface AssetConfig {
+  limit?: number;
+  offset?: number;
+  mediaType?: string;
+}
+```
+
+<Callout type='info' emoji='ℹ️'>
+  All properties are optional. Can be called as `getAssets({})`
+</Callout>
+
+**`limit`**
+
+- Number of assets that will be fetched `getAssets({limit: 70})`.
+- This is optional `getAssets({})`.
+- Provide `0` to fetch all the available assets `getAssets({limit: 0})`.
+- Default value - `50`
+
+**`offset`**
+
+- Number of assets to skip from the start (or) Number from where assets will start fetching `getAssets({offset: 70})`.
+- This is optional `getAssets({})`.
+- Default value - `0`
+
+**`mediaType`**
+
+- The type of asset that will be fetched.
+- Possible values are `audio`, `image`, `video`.
+- Default value - `audio`
+
+**Examples:**
+Let's say there are 10 assets.
+
+| question                                 | Function call                      |
+| ---------------------------------------- | ---------------------------------- |
+| Fetch first 7 assets(asset1 to asset 7)? | `getAssets({limit: 7})`            |
+| Fetch last 3 assets(asset8 to asset10)?  | `getAssets({limit: 3, offset: 7})` |
+| Fetch all the assets                     | `getAssets({limit: 0})`            |
+| Default case                             | `getAssets({})`                    |
+
+**Summary**
+
+| property  | Description                                   |
+| --------- | --------------------------------------------- |
+| limit     | Number of songs that will be fetched.         |
+| offset    | Number from where assets will start fetching. |
+| mediaType | Mediatype that will be fetched.               |
+
+**returns**
+
+```ts copy
+interface Assets {
+  assets: Array<Asset>;
+  totalCount: number;
+  endCursor: number;
+  hasNextPage: boolean;
+}
+```
+
+```ts copy
+interface Asset {
+  _id: string;
+  title: string;
+  displayName: string;
+  artist: string;
+  duration: string;
+  album: string;
+  path: string;
+  uri: string;
+  artwork: string;
+  artwork2: string;
+  mimeType: string;
+  palette: Array<string>;
+}
+```
+
+### `deleteAsset(assetId: string)`
+
+### `shareAsset(assetId: string)`
+
+### `getAudioFileInfo(audioId: string)`
+
+### `deleteManyAudio(uriList: Array<String>)`
+
+### `getAudioAlbums()`
+
+```ts copy
+interface Album {
+  _id: string;
+  title: string;
+  artwork: string;
+  artist: string;
+  numSongs: number;
+}
+```
+
+### `getArtists()`
+
+```ts copy
+interface Artist {
+  _id: string;
+  name: string;
+  numTracks: number;
+  numAlbums: number;
+}
+```
+
+### `getArtistAudio(artistId: String)`
+
+### `getGenres()`
+
+```ts copy
+interface Genre {
+  _id: string;
+  genre: string;
+  numTracks: number;
+  artwork: string;
+}
+```
+
+### `getGenreAudio(genreId: String, assetConfig: AssetConfig)`
+
+```ts copy
+interface AssetConfig {
+  limit?: number;
+  offset?: number;
+  mediaType?: string;
+}
+```

@@ -1,11 +1,40 @@
 # Introduction
- 
-Welcome to Nextra! This is a basic docs template. You can use it as a starting point for your own project :)
 
-## What is Nextra?
+A React Native module that allows you to fetch and manage audios, images, vidoes.
 
-A **simple**, **powerful** and **flexible** site generation framework with everything you love from Next.js.
+# Basic Example
 
-## Documentation
+## .then
 
-The documentation is available at [https://nextra.site](https://nextra.site).
+```jsx copy
+import { getAssets } from 'rn-media-library';
+
+// ...
+
+// call the function inside the useEffect on mount and set the state
+getAssets({ mediaType: 'audio' })
+  .then((res) => {
+    //parse and set the value in the state
+    setAssets(JSON.parse(res));
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+## Async/Await
+
+```jsx copy
+import { getAssets } from 'rn-media-library';
+
+// call the function inside the useEffect on mount and set the state
+const fetchAssets = async () => {
+  try {
+    const res = await getAssets({ mediaType: 'audio' });
+    //parse and set the value in the state
+    setAssets(JSON.parse(res));
+  } catch (error) {
+    console.log(error);
+  }
+};
+```
