@@ -1,0 +1,11 @@
+import { Callout } from 'nextra/components';
+
+### `deleteManyAudio(uriList: Array<String>)`
+
+This is function which is used to delete multiple audio files at once by providing an array of id's that need to e deleted.
+At present this function is only supported on Android 11 and above.
+
+<Callout type='error' emoji='🚫'>
+  This function is not supported on Android 10 and below as of now. It will
+  throw an error.
+</Callout>

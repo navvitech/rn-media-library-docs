@@ -1,0 +1,114 @@
+import { Callout } from 'nextra/components';
+
+### `getAssets(assetConfig: AssetConfig)`
+
+This is a function which return the assets(images/audios/videos) based on the mediaType provided.
+
+```ts copy showLineNumbers
+interface AssetConfig {
+  limit?: number;
+  offset?: number;
+  mediaType?: string;
+  palette?: boolean;
+}
+```
+
+<Callout type='info' emoji='ℹ️'>
+  All properties are optional. Can be called as `getAssets({})`
+</Callout>
+
+**`limit`**
+
+- Number of assets that will be fetched `getAssets({limit: 70})`.
+- This is optional `getAssets({})`.
+- Provide `0` to fetch all the available assets `getAssets({limit: 0})`.
+- Default value - `50`
+
+**`offset`**
+
+- Number of assets to skip from the start (or) Number from where assets will start fetching `getAssets({offset: 70})`.
+- This is optional `getAssets({})`.
+- Default value - `0`
+
+**`mediaType`**
+
+- The type of asset that will be fetched.
+- Possible values are `audio`, `image`, `video`.
+- Default value - `audio`
+
+**`palette`**
+
+- Whether to get palette in the data or not. More details about this is present in **returns** section.
+- Including this will increase the read time by a small amount based on the number of audio files on the device.
+
+**Examples:**
+Let's say there are 10 assets.
+
+| question                                 | Function call                      |
+| ---------------------------------------- | ---------------------------------- |
+| Fetch first 7 assets(asset1 to asset 7)? | `getAssets({limit: 7})`            |
+| Fetch last 3 assets(asset8 to asset10)?  | `getAssets({limit: 3, offset: 7})` |
+| Fetch all the assets                     | `getAssets({limit: 0})`            |
+| Default case                             | `getAssets({})`                    |
+
+**Summary**
+
+| property        | Description                                   |
+| --------------- | --------------------------------------------- |
+| **`limit`**     | Number of songs that will be fetched.         |
+| **`offset`**    | Number from where assets will start fetching. |
+| **`mediaType`** | Mediatype that will be fetched.               |
+
+<p className='returns'>Returns:</p>
+
+```ts copy showLineNumbers
+interface Assets {
+  assets: Array<Asset>;
+  totalCount: number;
+  endCursor: number;
+  hasNextPage: boolean;
+}
+```
+
+**`assets`**
+
+- An array of objects, like array of image/audio/video files according the give mediaType.
+
+| property          | Description                                                                                                                                                                                                                                                |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`totalCount`**  | Total count of image/audio/video files available on the device.                                                                                                                                                                                            |
+| **`endCursor`**   | <ul className="custom_ul"><li>This the last number in the assets that are fetched.</li> <li>If you are fetching 50 assets per batch, endCursor value will be 50 for the first batch, will be 100 for the second and so on... </li></ul>                    |
+| **`hasNextPage`** | <ul className="custom_ul"><li> This indicates, do we have more assets to fetch or not, according to the `limit` and `offset` values given. </li><li> `false` indicates, there are no assets to fetch i.e all the available assets are fetched. </li> </ul> |
+
+**Audio**
+
+```ts copy showLineNumbers
+interface Asset {
+  _id: string;
+  title: string;
+  displayName: string;
+  artist: string;
+  duration: string;
+  album: string;
+  path: string;
+  uri: string;
+  artwork: string;
+  artwork2: string;
+  palette?: Array<string>;
+}
+```
+
+| property          | Description                                                                                                                                                                                                                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`_id`**         | id of the audio.                                                                                                                                                                                                                                                                                        |
+| **`title`**       | title of the audio. This will not have extension of the audio in it.                                                                                                                                                                                                                                    |
+| **`displayName`** | displayName of the audio. This will have extension of the audio in it.                                                                                                                                                                                                                                  |
+| **`artist`**      | artist of the audio.                                                                                                                                                                                                                                                                                    |
+| **`duration`**    | duration of the audio in milliseconds.                                                                                                                                                                                                                                                                  |
+| **`album`**       | album of the audio to which it belongs to.                                                                                                                                                                                                                                                              |
+| **`path`**        | path of the audio.                                                                                                                                                                                                                                                                                      |
+| **`uri`**         | content uri of the audio.                                                                                                                                                                                                                                                                               |
+| **`artwork`**     | artwork uri of the audio.                                                                                                                                                                                                                                                                               |
+| **`artwork2`**    | another artwork uri of the audio, in case if artwork uri doesn't work.                                                                                                                                                                                                                                  |
+| **`mimeType`**    | mimeType of the audio.                                                                                                                                                                                                                                                                                  |
+| **`palette`**     | <ul className="custom_ul"><li> This is an array of 2 colors out of which one is light(1st color) shade and the other is dark(2nd color) shade </li><li>The colors are picked from the artwork image of the audio file.</li><li>This can be used as background color for `playing now` screen.</li></ul> |

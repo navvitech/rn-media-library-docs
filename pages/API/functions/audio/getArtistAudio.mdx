@@ -1,0 +1,14 @@
+### `getArtistAudio(artistId: String)`
+
+This function return an object of `Assets` type, where assets are array of audio files of a particular artist.
+
+<p className='returns'>Returns:</p>
+
+```ts copy showLineNumbers
+interface Assets {
+  assets: Array<Asset>;
+  totalCount: number;
+  endCursor: number;
+  hasNextPage: boolean;
+}
+```

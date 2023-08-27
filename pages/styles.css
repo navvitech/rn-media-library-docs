@@ -1,0 +1,11 @@
+.custom_ul {
+  margin-left: 10px;
+  list-style: disc;
+}
+
+.returns {
+  font-size: 25px;
+  color: orange;
+  font-weight: 500;
+  margin-top: 10px;
+}

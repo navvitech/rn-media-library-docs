@@ -1,0 +1,22 @@
+### `getGenreAudio(genreId: String, assetConfig: AssetConfig)`
+
+This function return an object of `Assets` type, where assets are array of audio files of a particular genre.
+
+<p className='returns'>Returns:</p>
+
+```ts copy showLineNumbers
+interface Assets {
+  assets: Array<Asset>;
+  totalCount: number;
+  endCursor: number;
+  hasNextPage: boolean;
+}
+```
+
+```ts copy showLineNumbers
+interface AssetConfig {
+  limit?: number;
+  offset?: number;
+  mediaType?: string;
+}
+```

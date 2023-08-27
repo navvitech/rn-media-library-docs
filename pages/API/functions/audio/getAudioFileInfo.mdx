@@ -1,0 +1,25 @@
+### `getAudioFileInfo(audioId: string)`
+
+This is a function which is used to get extra information in addition to that of `Asset` type like `size`, `mimeType` and `genre` of an audio file.
+
+<p className='returns'>Returns:</p>
+
+It returns single object of below mentioned `Asset` type.
+
+```ts copy showLineNumbers
+interface Asset {
+  _id: string;
+  title: string;
+  displayName: string;
+  artist: string;
+  size: string;
+  duration: string;
+  album: string;
+  mimeType: string;
+  path: string;
+  uri: string;
+  artwork: string;
+  artwork2: string;
+  genre: string;
+}
+```

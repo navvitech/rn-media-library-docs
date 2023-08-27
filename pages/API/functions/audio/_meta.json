@@ -1,0 +1,12 @@
+{
+    "getAssets": "getAssets",
+    "getAudioAlbums": "getAudioAlbums",
+    "getAudioFileInfo": "getAudioFileInfo",
+    "getArtists": "getArtists",
+    "getArtistAudio": "getArtistAudio",
+    "getGenres": "getGenres",
+    "getGenreAudio": "getGenreAudio",
+    "shareAsset": "shareAsset",
+    "deleteAsset": "deleteAsset",
+    "deleteManyAudio": "deleteManyAudio"
+}

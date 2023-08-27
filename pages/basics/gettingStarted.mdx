@@ -1,1 +1,70 @@
+import { Callout } from 'nextra/components';
+
 # Getting Started
+
+## Android
+
+Use appropriate permissions in the **_`AndroidManifest.xml`_** file of your app, according to the usecase.
+
+<Callout type='info' emoji='ℹ️'>
+  Generally located at project-name/android/app/src/main/AndroidManifest.xml
+</Callout>
+
+### Android 13(API 33) and above:
+
+This permission gives access to images or photos on the device.
+
+```java copy
+  <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+```
+
+This permission gives access to videos on the device.
+
+```java copy
+  <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+```
+
+This permission gives access to audio files on the device.
+
+```java copy
+  <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+```
+
+### Android 12(API 31, 32) and below:
+
+This permission gives access to read data from the device's external storage, including media files, documents, and other content.
+
+```java copy
+  <uses-permission
+    android:name="android.permission.READ_EXTERNAL_STORAGE"
+    android:maxSdkVersion="32" />
+```
+
+This permission provides access to write data to the device's external storage, including creating, modifying, and deleting files.
+
+```java copy
+  <uses-permission
+    android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    android:maxSdkVersion="29" />
+```
+
+This permission gives access to manage the content of the device's external storage. It allows the app to move, copy, delete, or modify files stored in the external storage.
+
+```java copy
+  <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+```
+
+opt out of scoped storage by declaring `android:requestLegacyExternalStorage="true"` in **_`AndroidManifest.xml`_** on `application` tag inorder to manage data on Android 10.
+
+```java copy
+  <application
+    android:requestLegacyExternalStorage="true"
+    ...
+    ...
+```
+
+## IOS
+
+<Callout type='error' emoji='🚫'>
+  This library does not support IOS as of now.
+</Callout>
